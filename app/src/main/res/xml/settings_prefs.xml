@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="TARGET_BLUE_DEVICE"
+        android:title="@string/pref_title_header_mbwblue_device">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_baseline_bluetooth_24px"
+            android:key="@string/key_bluetooth_service"
+            android:summary="@string/summary_bluetooth_service"
+            android:title="@string/title_bluetooth_service" />
+
+        <Preference
+            android:title="Choose MBWBlue Device"
+            android:key="@string/key_choose_mbwblue_device"
+            >
+            <!--<intent android:targetPackage="com.simetrix.wmbusblueintelisread"-->
+                    <!--android:targetClass="com.simetrix.wmbusblueintelisread.BluethActivity"/>-->
+        </Preference>
+
+        <Preference
+            android:icon="@drawable/ic_baseline_bluetooth_24px"
+            android:key="@string/key_paire_mbwblue_device"
+            android:summary="@string/summary_choose_blue_device"
+            android:title="@string/title_choose_mbwblue_device" />
+
+        <ListPreference
+            android:key="list_preference_mbwbluedevice"
+            android:title="@string/title_list_mbwblue_devices"
+            android:entries="@array/entries_mbwbluedevice_list_preference"
+            android:entryValues="@array/entryvalues_mbwblue_devices_list_preference"
+            android:defaultValue="0"
+            android:dialogTitle="@string/dialog_title_choose_mbwbluedev_list_preference" />
+
+        <ListPreference
+            android:defaultValue="popular"
+            android:entries="@array/categories"
+            android:entryValues="@array/categories_value"
+            android:summary="Select categories of movies"
+            android:title="Categories"
+            android:key="@string/movies_categories_key" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">MBWBlue Read Intelis</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+    <string-array name="categories">
+        <item>Popular Movies</item>
+        <item>Top Rated Movies</item>
+    </string-array>
+    <string-array name="categories_value">
+        <item>popular</item>
+        <item>top_rated</item>
+    </string-array>
+
+    <string name="movies_categories_key">categoriesKey</string>
+    <string name="default_movies_categories">popular</string>
+    <string name="key_paire_mbwblue_device">paire_mbwblue_device</string>
+    <string name="pref_title_header_mbwblue_device">Mbus Wireless Blue devices</string>
+    <string name="key_header_mbwblue_device">mbusw_blue_device</string>
+
+    <string name="title_choose_mbwblue_device">Choose Bluetooth device</string>
+    <string name="summary_choose_blue_device">Specify blue device</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment_blue">Hello blank fragment bluetooth pairing</string>
+    <string name="hello_blank_fragment">Hello blank fragment settings</string>
+    <string name="key_bluetooth_service">bluetooth_dev</string>
+    <string name="title_bluetooth_service">Bluetooth</string>
+    <string name="summary_bluetooth_service">Change bluetooth state</string>
+    <string name="title_list_mbwblue_devices">MBWBLUE devices</string>
+    <string name="summary_mbwbluedevs_list_preference">Choose MBWBlue devices</string>
+    <string name="dialog_title_choose_mbwbluedev_list_preference">Choose MBWBlue device</string>
+    <string name="key_choose_mbwblue_device">choose_mbwblue_devices</string>
+    <string name="hello_default_fragment">Default Fragment......</string>
+</resources>
