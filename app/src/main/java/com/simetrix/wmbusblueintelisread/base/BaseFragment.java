@@ -9,12 +9,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-
-import com.simetrix.wmbusblueintelisread.R;
-
 public abstract class BaseFragment extends Fragment {
-
-
     protected HostActivityInterface hostActivityInterface;
 
     /**

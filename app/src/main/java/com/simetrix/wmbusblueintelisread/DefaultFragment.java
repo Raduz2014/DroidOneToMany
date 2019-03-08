@@ -11,15 +11,6 @@ import android.view.ViewGroup;
 
 import com.simetrix.wmbusblueintelisread.base.BaseFragment;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link DefaultFragment.OnDefaultFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link DefaultFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class DefaultFragment extends BaseFragment {
     private static final String TAG = "Deafult_Frag";
     private static final String EXTRA_NAME = "extra_name";
