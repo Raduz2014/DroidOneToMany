@@ -6,14 +6,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.ListView;
 
 import com.simetrix.wmbusblueintelisread.adapters.MainAppMenuAdapter;
 import com.simetrix.wmbusblueintelisread.base.BaseFragment;
 import com.simetrix.wmbusblueintelisread.contracts.AppMenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 
 
 public class StartMenuFragment extends BaseFragment {
@@ -71,9 +77,22 @@ public class StartMenuFragment extends BaseFragment {
 
         View rootView =  inflater.inflate(R.layout.fragment_start_menu, container, false);
 
-        GridView appMenuGridView = (GridView) rootView.findViewById(R.id.appMenuOptionGridView);
-        MainAppMenuAdapter menuAdapter = new MainAppMenuAdapter(mContext, menuItems);
-        appMenuGridView.setAdapter(menuAdapter);
+        ListView appMenuLV = (ListView) rootView.findViewById(R.id.appListMenuOptions);
+
+        String[] menuItems = {"Read", "Upload meters", "Export Read Meters"};
+        ArrayList<AppMenuItem> menuList = new ArrayList<>();
+
+        menuList.add(new AppMenuItem( ResourcesCompat.getDrawable(getResources(), R.drawable.icon8_home, null), "Home"));
+        menuList.add(new AppMenuItem( ResourcesCompat.getDrawable(getResources(), R.drawable.icon8_wiper, null), "Wireless Mbus Reader"));
+        menuList.add(new AppMenuItem( ResourcesCompat.getDrawable(getResources(), R.drawable.icon8_phone_jammer, null), "Blocks to read"));
+        menuList.add(new AppMenuItem( ResourcesCompat.getDrawable(getResources(), R.drawable.icon8_phone_jammer, null), "Import"));
+        menuList.add(new AppMenuItem( ResourcesCompat.getDrawable(getResources(), R.drawable.icon8_phone_jammer, null), "Export"));
+
+
+        ArrayAdapter<String> itemsAdapter =
+                new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, menuItems);
+        MainAppMenuAdapter menuAdapter = new MainAppMenuAdapter(mContext, menuList);
+        appMenuLV.setAdapter(menuAdapter);
         return rootView;
     }
 
@@ -93,12 +112,12 @@ public class StartMenuFragment extends BaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnStartMenuFragmentInteractionListener) {
-            mListener = (OnStartMenuFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+//        if (context instanceof OnStartMenuFragmentInteractionListener) {
+//            mListener = (OnStartMenuFragmentInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
     }
 
     @Override
@@ -109,6 +128,5 @@ public class StartMenuFragment extends BaseFragment {
 
     public interface OnStartMenuFragmentInteractionListener {
         void onStartMenuFragmentInteraction(Uri uri);
-        String getName();
     }
 }

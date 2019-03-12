@@ -77,7 +77,7 @@ public class MainActivity
 
 
         fm.beginTransaction()
-        .replace(R.id.frags_container, new DefaultFragment(), "default-frag")
+        .replace(R.id.frags_container, new StartMenuFragment(), "start-frag")
         .addToBackStack(null)
         .commit();
     }
@@ -148,7 +148,7 @@ public class MainActivity
     @Override
     public void onBackPressed() {
         // Check if selectedFragment is not consuming back press
-        if(!selectedFragment.onBackPressed()) {
+        if(selectedFragment.onBackPressed()) {
             // If not consumed, handle it.
             handleBackPressInThisActivity();
         }
@@ -158,18 +158,20 @@ public class MainActivity
      * Will close this Activity if double back pressed within 2000 ms
      */
     private void handleBackPressInThisActivity() {
-        if(isWarnedToClose) {
-            finish();
-        } else {
-            isWarnedToClose = true;
-            Toast.makeText(this, "Activity: Tap again to close application", Toast.LENGTH_SHORT).show();
-            new Handler().postDelayed(new Runnable() {
+        if(selectedFragment instanceof StartMenuFragment) {
+            if (isWarnedToClose) {
+                finish();
+            } else {
+                isWarnedToClose = true;
+                Toast.makeText(this, "Activity: Tap again to close application", Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
 
-                @Override
-                public void run() {
-                    isWarnedToClose = false;
-                }
-            }, 2000);
+                    @Override
+                    public void run() {
+                        isWarnedToClose = false;
+                    }
+                }, 2000);
+            }
         }
     }
 
@@ -210,7 +212,7 @@ public class MainActivity
 
     @Override
     public void popBackStack() {
-        if(!(selectedFragment instanceof DefaultFragment))
+        if(!(selectedFragment instanceof StartMenuFragment))
             fm.popBackStackImmediate();
     }
 
@@ -260,5 +262,10 @@ public class MainActivity
     @Override
     public void showDefaultFragments(String name) {
         addFragment(DefaultFragment.newInstance("default_fragment"), false);
+    }
+
+    @Override
+    public void showStartMenu(String name) {
+        addFragment(StartMenuFragment.newInstance("StartMenu_Frag"), false);
     }
 }
