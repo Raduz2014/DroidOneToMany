@@ -44,14 +44,13 @@ public class MainActivity
     FragmentManager fm;
     private BaseFragment selectedFragment;
     private boolean isWarnedToClose = false;
-    private short tapCliks = 3;
+    private short backBtnCliks = 2;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tapCliks = 3;
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -88,6 +87,12 @@ public class MainActivity
         .replace(R.id.frags_container, new StartMenuFragment(), "start-frag")
         .addToBackStack(null)
         .commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        backBtnCliks = 2;
     }
 
     @Override
@@ -184,18 +189,24 @@ public class MainActivity
      */
     private void handleBackPressInThisActivity() {
         if(selectedFragment instanceof StartMenuFragment) {
-            --tapCliks;
-            if (isWarnedToClose && tapCliks == 0) {
+            --backBtnCliks;
+
+            if(backBtnCliks <= 0){
+                isWarnedToClose = true;
+            }
+
+            if (isWarnedToClose ) {
                 finish();
             } else {
                 isWarnedToClose = true;
 
-                Toast.makeText(this, "Activity: Tap again to close application: " + tapCliks, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Activity: Tap again to close application: " + backBtnCliks , Toast.LENGTH_SHORT).show();
                 new Handler().postDelayed(new Runnable() {
 
                     @Override
                     public void run() {
                         isWarnedToClose = false;
+                        backBtnCliks = 2;
                     }
                 }, 2000);
             }
@@ -241,7 +252,9 @@ public class MainActivity
     @Override
     public void setSelectedFragment(BaseFragment fragment) {
         this.selectedFragment = fragment;
-
+        if(!(selectedFragment instanceof StartMenuFragment)){
+            backBtnCliks = 2;
+        }
 //        if(selectedFragment instanceof DrawerItemBaseFragment) {
 //            // If foreground fragment is drawer item, unlock drawer
 //            unlockDrawer();
