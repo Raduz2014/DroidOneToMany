@@ -9,13 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.simetrix.wmbusblueintelisread.InterFragmentCommunication.DefaultInterface;
 import com.simetrix.wmbusblueintelisread.base.BaseFragment;
 
 public class DefaultFragment extends BaseFragment {
     private static final String TAG = "Deafult_Frag";
     private static final String EXTRA_NAME = "extra_name";
 
-    private OnDefaultFragmentInteractionListener mListener;
+    private DefaultInterface mListener;
 
     public DefaultFragment() {
         // Required empty public constructor
@@ -47,11 +48,11 @@ public class DefaultFragment extends BaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnDefaultFragmentInteractionListener) {
-            mListener = (OnDefaultFragmentInteractionListener) context;
+        if (context instanceof DefaultInterface) {
+            mListener = (DefaultInterface) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement DefaultInterface");
         }
     }
 
@@ -59,6 +60,19 @@ public class DefaultFragment extends BaseFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mListener.showDefaultFragment(true);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mListener.showDefaultFragment(false);
+
     }
 
     @Override
@@ -73,7 +87,8 @@ public class DefaultFragment extends BaseFragment {
     }
 
     public interface OnDefaultFragmentInteractionListener {
-        void onDefaultFragmentInteraction(Uri uri);
+//        void onDefaultFragmentInteraction(Uri uri);
         String getName();
+//        void showDefaultFragment(boolean state);
     }
 }

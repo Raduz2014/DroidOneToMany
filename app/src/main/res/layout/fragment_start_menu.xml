@@ -3,23 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartMenuFragment">
+    tools:context=".StartMenuFragment"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    >
 
-    <!--<GridView-->
-        <!--android:id="@+id/appMenuOptionGridView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:gravity="center"-->
-        <!--android:columnWidth="100dp"-->
-        <!--android:numColumns="auto_fit"-->
-        <!--android:verticalSpacing="24dp"-->
-        <!--android:horizontalSpacing="10dp"-->
-        <!--android:stretchMode="spacingWidthUniform"-->
-        <!--/>-->
-
-
-    <ListView
-        android:id="@+id/appListMenuOptions"
+    <GridView
+        android:id="@+id/appMenuOptionGridView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:columnWidth="100dp"
+        android:gravity="center"
+        android:choiceMode="singleChoice"
+        android:horizontalSpacing="15dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="none"
+
+        android:verticalSpacing="45dp"
+        />
 </FrameLayout>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.simetrix.wmbusblueintelisread.InterFragmentCommunication.DefaultInterface;
 import com.simetrix.wmbusblueintelisread.base.BaseFragment;
 import com.simetrix.wmbusblueintelisread.utils.AppConstants;
 
@@ -16,11 +17,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+
+import java.net.URI;
 
 public class MainActivity
         extends
@@ -28,6 +32,9 @@ public class MainActivity
         implements
             DefaultFragment.OnDefaultFragmentInteractionListener,
             BlueDevicePaireFragment.OnBluethDevicePairFragmentInteractionListener,
+            StartMenuFragment.OnStartMenuFragmentInteractionListener,
+            ReadMeterFragment.OnReadMeterFragmentInteractionListener,
+            DefaultInterface,
             MainInterface
 {
     private final String TAG = MainActivity.class.getSimpleName();
@@ -37,13 +44,14 @@ public class MainActivity
     FragmentManager fm;
     private BaseFragment selectedFragment;
     private boolean isWarnedToClose = false;
+    private short tapCliks = 3;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        tapCliks = 3;
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -80,6 +88,16 @@ public class MainActivity
         .replace(R.id.frags_container, new StartMenuFragment(), "start-frag")
         .addToBackStack(null)
         .commit();
+    }
+
+    @Override
+    public void onStartMenuFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void OnReadMeterFragmentInteraction(Uri uri) {
+
     }
 
     public class FabActionImportListener implements View.OnClickListener{
@@ -127,17 +145,24 @@ public class MainActivity
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-//            Intent configIntent = new Intent(this, SettingsActivity.class);
-//            startActivity(configIntent);
-            fm.beginTransaction()
-                    .replace(R.id.frags_container, new SettingsFragment(), "settings-frag")
-                    .addToBackStack("settings-frag")
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                    .commit();
+            Intent configIntent = new Intent(this, SettingsActivity.class);
+            startActivity(configIntent);
+//            fm.beginTransaction()
+//                    .replace(R.id.frags_container, new SettingsFragment(), "settings-frag")
+//                    .addToBackStack("settings-frag")
+//                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+//                    .commit();
             return true;
         }
-
-        return super.onOptionsItemSelected(item);
+        else if(id == R.id.home)  {
+            onBackPressed();
+            return true;
+        }
+        else {
+            onBackPressed();
+            return true;
+        }
+        //return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -159,11 +184,13 @@ public class MainActivity
      */
     private void handleBackPressInThisActivity() {
         if(selectedFragment instanceof StartMenuFragment) {
-            if (isWarnedToClose) {
+            --tapCliks;
+            if (isWarnedToClose && tapCliks == 0) {
                 finish();
             } else {
                 isWarnedToClose = true;
-                Toast.makeText(this, "Activity: Tap again to close application", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(this, "Activity: Tap again to close application: " + tapCliks, Toast.LENGTH_SHORT).show();
                 new Handler().postDelayed(new Runnable() {
 
                     @Override
@@ -175,15 +202,29 @@ public class MainActivity
         }
     }
 
-
-    @Override
-    public void onDefaultFragmentInteraction(Uri uri) {
-
-    }
-
     @Override
     public String getName() {
         return null;
+    }
+
+    @Override
+    public void showDefaultFragment(boolean state) {
+        if(state){
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        }
+        else {
+            getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher);
+        }
+    }
+
+    @Override
+    public void showReadingMeterFragment(boolean state) {
+        if(state){
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        }
+        else {
+            getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher);
+        }
     }
 
     @Override

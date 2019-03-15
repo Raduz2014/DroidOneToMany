@@ -15,8 +15,10 @@
             android:title="Choose MBWBlue Device"
             android:key="@string/key_choose_mbwblue_device"
             >
-            <!--<intent android:targetPackage="com.simetrix.wmbusblueintelisread"-->
-                    <!--android:targetClass="com.simetrix.wmbusblueintelisread.BluethActivity"/>-->
+            <intent android:targetPackage="com.simetrix.wmbusblueintelisread"
+                android:targetClass="com.simetrix.wmbusblueintelisread.BluethActivity"
+                android:action="com.simetrix.wmbusblueintelisread.BluethActivity"
+                />
         </Preference>
 
         <Preference

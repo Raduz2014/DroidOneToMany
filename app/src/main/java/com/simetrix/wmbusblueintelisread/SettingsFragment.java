@@ -133,16 +133,16 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         });
 
         final Preference mbwblue_pref = (Preference) findPreference("choose_mbwblue_devices");
-        mbwblue_pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-//                Intent intent = new Intent(getActivity(), BluethActivity.class);
-//                intent.putExtra("message", "This message comes from PassingDataSourceActivity's second button");
-//                getActivity().startActivityForResult(intent, SettingsActivity.CHOOSE_MBWBLUE_DEVICE);
-                openBluePairedDeviceFragment();
-                return true;
-            }
-        });
+//        mbwblue_pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+//            @Override
+//            public boolean onPreferenceClick(Preference preference) {
+////                Intent intent = new Intent(getActivity(), BluethActivity.class);
+////                intent.putExtra("message", "This message comes from PassingDataSourceActivity's second button");
+////                getActivity().startActivityForResult(intent, SettingsActivity.CHOOSE_MBWBLUE_DEVICE);
+//                openBluePairedDeviceFragment();
+//                return true;
+//            }
+//        });
 
     }
 

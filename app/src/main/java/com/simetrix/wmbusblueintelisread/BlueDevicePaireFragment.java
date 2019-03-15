@@ -295,17 +295,20 @@ public class BlueDevicePaireFragment extends BaseFragment {
         listPairedBlueDevices();
     }
 
+
     private void backToSettings(View v) {
         stopBTDiscovering();
 
-        FragmentManager fm = getFragmentManager();
-        Fragment stackFrag = FragmentUtil.getFragmentByTagName(fm,"settings-frag");
-        Intent intent = new Intent(mContext, BlueDevicePaireFragment.class);
-        intent.putExtra("com.simetrix.wmbusblueintelisread.contracts.BlueDevice",mSelMBWBlueDevice);
+//        FragmentManager fm = getFragmentManager();
+//        Fragment stackFrag = FragmentUtil.getFragmentByTagName(fm,"settings-frag");
+//        Intent intent = new Intent(mContext, BlueDevicePaireFragment.class);
+//        intent.putExtra("com.simetrix.wmbusblueintelisread.contracts.BlueDevice",mSelMBWBlueDevice);
 
-        int ddd = AppConstants.FRAGMENT_CODE;
-        stackFrag.onActivityResult(ddd, RESULT_OK, intent);
-        getFragmentManager().popBackStack();
+//        int ddd = AppConstants.FRAGMENT_CODE;
+//        stackFrag.onActivityResult(ddd, RESULT_OK, intent);
+//        getFragmentManager().popBackStack();
+//        hostActivityInterface.popBackStack();
+        mActivity.onBackPressed();
     }
 
     private void listPairedBlueDevices(){

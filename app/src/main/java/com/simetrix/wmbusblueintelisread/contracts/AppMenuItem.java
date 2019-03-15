@@ -7,12 +7,15 @@ import java.util.ArrayList;
 public class AppMenuItem {
     public Drawable imgIcon;
     public String title;
+    public String key;
 
     public AppMenuItem(){}
 
-    public AppMenuItem(Drawable imgIcon, String title){
-        this.imgIcon = imgIcon;
+
+    public AppMenuItem(Drawable icon, String title, String key) {
+        this.imgIcon = icon;
         this.title = title;
+        this.key = key;
     }
 
     public static ArrayList<AppMenuItem> buildMainHomeItemsList(){

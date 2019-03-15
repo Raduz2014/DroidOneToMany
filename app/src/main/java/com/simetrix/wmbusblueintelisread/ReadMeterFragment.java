@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.simetrix.wmbusblueintelisread.InterFragmentCommunication.ReadingMeterInterface;
 import com.simetrix.wmbusblueintelisread.base.BaseFragment;
 
 public class ReadMeterFragment extends BaseFragment {
@@ -14,6 +15,7 @@ public class ReadMeterFragment extends BaseFragment {
     private static final String EXTRA_NAME = "extra_name";
 
     private OnReadMeterFragmentInteractionListener mListener;
+    private ReadingMeterInterface mListener2;
 
     public ReadMeterFragment() {
         // Required empty public constructor
@@ -71,10 +73,23 @@ public class ReadMeterFragment extends BaseFragment {
         super.onAttach(context);
         if (context instanceof OnReadMeterFragmentInteractionListener) {
             mListener = (OnReadMeterFragmentInteractionListener) context;
+            mListener2 = (ReadingMeterInterface)context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnReadMeterFragmentInteractionListener");
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mListener2.showReadingMeterFragment(true);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mListener2.showReadingMeterFragment(false);
     }
 
     @Override

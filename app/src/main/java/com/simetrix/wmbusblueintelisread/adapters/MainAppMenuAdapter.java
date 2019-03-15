@@ -28,7 +28,7 @@ public class MainAppMenuAdapter extends ArrayAdapter<AppMenuItem> {
 
         ImageView img = (ImageView)convertView.findViewById(R.id.item_image);
         TextView  txt = (TextView)convertView.findViewById(R.id.item_text);
-        img.setImageDrawable(menuItem.imgIcon);
+//        img.setImageDrawable(menuItem.imgIcon);
         txt.setText(menuItem.title);
         return convertView;
     }

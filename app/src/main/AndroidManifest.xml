@@ -22,22 +22,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.PopupOverlay">
+
         <activity
             android:name=".BluethActivity"
-            android:label="MBWBlue device pairing">
+            android:label="MBWBlue device pairing"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.simetrix.wmbusblueintelisread.MainActivity" />
+
             <intent-filter>
                 <action android:name="com.simetrix.wmbusblueintelisread.BluethActivity" />
                 <category android:name="android.intent.category.PREFERENCE" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingsActivity" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.simetrix.wmbusblueintelisread.MainActivity" />
+                />
+        </activity>
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.simetrix.wmbusblueintelisread.MainActivity" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

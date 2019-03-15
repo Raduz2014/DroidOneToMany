@@ -33,4 +33,6 @@
     <string name="dialog_title_choose_mbwbluedev_list_preference">Choose MBWBlue device</string>
     <string name="key_choose_mbwblue_device">choose_mbwblue_devices</string>
     <string name="hello_default_fragment">Default Fragment......</string>
+    <string name="btnStartReadingTask">Start Reading</string>
+    <string name="btnClearReadList">Clear list</string>
 </resources>

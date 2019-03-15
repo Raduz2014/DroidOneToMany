@@ -15,16 +15,21 @@ import android.view.MenuItem;
 
 import com.simetrix.wmbusblueintelisread.contracts.BlueDevice;
 
-public class SettingsActivity extends AppCompatActivity implements BlueDevicePaireFragment.OnBluethDevicePairFragmentInteractionListener {
+public class SettingsActivity extends AppCompatActivity
+        implements BlueDevicePaireFragment.OnBluethDevicePairFragmentInteractionListener {
     private final String TAG = SettingsActivity.class.getSimpleName();
     public final static int CHOOSE_MBWBLUE_DEVICE = 12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.settings_activity);
 
-
-
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
     }
 
     @Override
@@ -37,18 +42,12 @@ public class SettingsActivity extends AppCompatActivity implements BlueDevicePai
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume()");
-//        getSupportFragmentManager().beginTransaction()
-//                .add(android.R.id.content, new SettingsFragment(), "settings")
-//                .addToBackStack(null)
-//                .commit();
-
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         Log.d(TAG, "onStop()");
-
     }
 
     @Override
